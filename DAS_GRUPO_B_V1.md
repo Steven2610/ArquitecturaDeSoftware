@@ -14,7 +14,7 @@
 
 ---
 
-## Integrantes y responsabilidades
+## 1. Integrantes y responsabilidades
 
 | Integrante | Rol asignado | Correo institucional |
 | :--- | :--- | :--- |
@@ -30,7 +30,7 @@
 
 ---
 
-## 1. Contexto del problema
+## 2. Contexto del problema
 
 La Cooperativa de Ahorro y Crédito Padre Julián Lorente requiere disponer de una visión integrada de sus proyectos. El TDR identifica dispersión de información y seguimiento manual entre herramientas y archivos, con el consiguiente riesgo de inconsistencias y retrasos en los reportes.
 
@@ -39,12 +39,6 @@ Según lo comprendido por el Grupo B durante la reunión con la jefa del Departa
 La propuesta surge de la dificultad de relacionar y consultar de forma conjunta lo almacenado en Redmine y lo registrado en Excel. Ambas fuentes comparten tres conceptos: proyectos, iniciativas y requerimientos; sin embargo, queda por comprobar si sus valores constituyen claves comunes confiables. El reto arquitectónico es consolidar esas fuentes sin duplicar registros, conservar la trazabilidad del origen y presentar información clara para el seguimiento y la toma de decisiones.
 
 **Desafíos identificados:** integración de fuentes heterogéneas; correspondencia entre registros; calidad y vigencia de datos; permisos de acceso; definición compartida de indicadores.
-
----
-
-## 2. Integrantes y responsabilidades (Detalle de roles)
-
-*(Ver tabla inicial de integrantes en el encabezado del documento).*
 
 ---
 
