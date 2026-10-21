@@ -229,14 +229,14 @@ Se sugiere organizar el repositorio con carpetas para `/docs`, `/diagramas`, `/a
 
 El TDR exige registrar fecha, modelo, objetivo, prompt, resumen de respuesta y decisión del equipo (aceptado, corregido o descartado, con justificación). La documentadora es responsable del registro. Se ofrece una entrada provisional para validar contra el historial real del chat antes de subirla.
 
-| Campo | Registro inicial / por completar |
+| Campo | Registro inicial  |
 | :--- | :--- |
 | Fecha | 20 de octubre de 2026 |
 | Modelo | ChatGPT – GPT-6 |
-| Objetivo | Estructurar la propuesta de solución del Grupo B según el formato docente de diez apartados. |
+| Objetivo | Estructurar la propuesta de solución  |
 | Prompt utilizado | Necesito que actúes como ingeniero en ciencias de la computación y me ayudes a resolver un problema referente a un Dashboard gerencial, por lo que entendimos junto a mi equipo de la reunión que se nos brindó por parte de la cooperativa la cual es la que nos pide una solución para ese reto, se utiliza readmine que se encarga de recoger los datos del git lab y de sonarqube; en un excel tienen información adicional que realizan en las reuniones pero que tienen tres campos en común con el redmine que son proyectos iniciativas y requerimientos . la idea es crear una página que consuma la información del redmine y del Excel online compartido que aportan cada semana para organizarlo todo en la plataforma. ese el contexto actual, la que nos dio el contesto fue la jefa del departamento de desarrollo de software de la padre Julián, ayúdame a identificar otros stakeholders. |
 | Resumen de respuesta | Se elaboró una propuesta Word con stakeholders y roles, alcance, fuentes, RF/RNF, supuestos, visión y plan semanal. |
-| Decisión del equipo | [PENDIENTE: aceptado / corregido / descartado; indicar correcciones y motivo] |
+| Decisión del equipo | Aceptado con correcciones |
 
 ### Anexo 3. Fuentes y evidencias del proyecto
 
