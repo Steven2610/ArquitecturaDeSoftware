@@ -304,9 +304,9 @@ Esta sección se apoya en los siguientes requisitos existentes: RF-01 y RF-02 (c
 | Alta dirección | Persona | Conocer avances y riesgos para tomar decisiones. | Actor previsto en el TDR. |
 | Responsable de proyecto | Persona | Revisar proyectos, iniciativas, requerimientos, hitos y alertas. | Actor previsto en el TDR. |
 | Administrador de la plataforma | Persona | Solicitar sincronizaciones y revisar problemas de integración. | Rol propuesto; pendiente de validación. |
-| Temporizador externo  | Sistema externo | Iniciar la sincronización programada y la evaluación automática de alertas. | Candidato técnico ; no es un usuario humano. |
-| Redmine  | Sistema externo | Suministrar registros de proyectos, iniciativas y requerimientos. | Sistema real identificado; acceso  en el trabajo. |
-| Excel online  | Sistema externo | Suministrar información complementaria registrada semanalmente. | Fuente real descrita en la entrevista; acceso. |
+| Temporizador externo  | Sistema externo | Iniciar la sincronización programada y la evaluación automática de alertas. | Actor técnico propuesto para iniciar procesos automáticos. |
+| Redmine  | Sistema externo | Suministrar registros de proyectos, iniciativas y requerimientos. | Sistema real identificado durante la entrevista; mecanismo de acceso pendiente de validación.|
+| Excel online  | Sistema externo | Suministrar información complementaria registrada semanalmente. | Fuente real identificada durante la entrevista; mecanismo de acceso pendiente de validación. |
 
 ## 2. Catálogo priorizado
 
@@ -376,8 +376,8 @@ Las especificaciones se relacionan con los actores, el diagrama UML y los requis
 | 2 | **Sistema:** Verifica los permisos y presenta los períodos disponibles para consulta. |
 | 3 | **Usuario:** Selecciona el período de seguimiento que desea revisar. |
 | 4 | **Sistema:** Recupera los proyectos correspondientes al período seleccionado y presenta su estado general. |
-| 5 | **Usuario:** Solicita revisar el resumen de indicadores del período seleccionado. |
-| 6 | **Sistema:** Ejecuta CU-04 para presentar los indicadores de avance y muestra las alertas disponibles y la fecha de última actualización. |
+| 5 | **Usuario:** Revisa el estado general de los proyectos del período seleccionado. |
+| 6 | **Sistema:** Ejecuta CU-04 y presenta los indicadores de avance, las alertas disponibles, el origen de los datos y la fecha de última actualización. |
 | 7 | **Usuario:** Selecciona un criterio para filtrar los proyectos, como estado o responsable. |
 | 8 | **Sistema:** Actualiza el panorama y presenta los proyectos correspondientes al filtro seleccionado. |
 
@@ -556,7 +556,7 @@ La matriz de trazabilidad permite relacionar los objetivos específicos de Visi�
 | **OE-02** | Definir mecanismos de obtención, normalización y correspondencia entre los datos de Redmine y del Excel compartido. | CU-03, CU-07, CU-09, CU-11 | CU-09 permite obtener y consolidar los registros de ambas fuentes. CU-03 y CU-07 permiten consultar la información relacionada, mientras que CU-11 ayuda a identificar problemas en la sincronización o correspondencia de datos. |
 | **OE-03** | Describir la solución mediante las vistas del modelo 4+1, manteniendo trazabilidad entre requisitos, escenarios y componentes. | CU-01, CU-02, CU-03, CU-09, CU-10 | Estos casos permiten representar las principales interacciones del sistema y servirán como referencia para elaborar las vistas arquitectónicas, los diagramas y las relaciones entre los requisitos y los componentes de Visión Integral 360. |
 | **OE-04** | Priorizar atributos de calidad verificables, especialmente interoperabilidad, seguridad y fiabilidad, y justificar las decisiones arquitectónicas. | CU-01, CU-09, CU-10, CU-11 | CU-01 requiere controlar el acceso a la información. CU-09 aborda la interoperabilidad y los fallos de las fuentes. CU-10 debe evitar alertas incorrectas o duplicadas y CU-11 permite revisar problemas de sincronización. Estos casos ayudan a definir y evaluar los atributos de calidad. |
-| **OE-05** | Construir un prototipo mínimo que integre al menos dos fuentes reales autorizadas o simuladas, muestre información consolidada y evidencie KPI y alertas. | CU-01, CU-02, CU-04, CU-05, CU-09, CU-10 | CU-09 consolida la información de Redmine y Excel online. CU-01 y CU-02 permiten consultar los proyectos; CU-04 presenta indicadores de avance; CU-10 genera alertas y CU-05 permite revisarlas. En conjunto, estos casos representan las funciones principales del prototipo. |
+| **OE-05** | Construir un prototipo mínimo que integre al menos dos fuentes reales autorizadas o simuladas, muestre información consolidada y evidencie KPI y alertas. | CU-01, CU-02, CU-04, CU-05, CU-06, CU-08, CU-09, CU-10 | CU-09 consolida la información de Redmine y Excel online. CU-01 y CU-02 permiten consultar los proyectos; CU-04 presenta indicadores de avance; CU-10 genera alertas y CU-05 permite revisarlas. En conjunto, estos casos representan las funciones principales del prototipo, CU-06 permite consultar los hitos y plazos de los proyectos, mientras que CU-08 facilita comparar su estado general. Ambos complementan el seguimiento consolidado que ofrece Visión Integral 360. |
 
 ### 5.2. Relación con los requisitos funcionales
 
