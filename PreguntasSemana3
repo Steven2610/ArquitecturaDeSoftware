@@ -1,6 +1,11 @@
 1. ¿Para qué usamos la IA esta semana y qué decidimos nosotros?
 Utilizamos la IA para comprender mejor el reto Visión 360, organizar los requisitos del TDR, identificar los posibles usuarios del sistema y plantear una propuesta inicial para el dashboard. La IA nos ayudó a estructurar ideas, pero nosotros debemos decidir qué funcionalidades implementar, qué atributos de calidad priorizar y cómo adaptar la solución a las necesidades reales de la cooperativa.
+Complementando lo anterior, usé la IA como apoyo para redactar y estructurar la documentación técnica inicial, sugerir esquemas de diagramas de arquitectura y listar posibles atributos de calidad (como seguridad y escalabilidad) para el proyecto. Nosotros decidimos qué modelo de datos y qué vistas del dashboard son técnicamente viables con los recursos actuales, filtrando las sugerencias genéricas que no aplicaban a la cooperativa.
+
 2. ¿En qué se equivocó y cómo lo detectamos?
 La IA podía asumir que todas las herramientas debían integrarse o que necesitábamos sincronización bidireccional sin que la cooperativa lo hubiera confirmado. Detectamos ese riesgo al comparar la propuesta con el TDR y nuestros apuntes de la reunión. Por eso distinguimos los requisitos obligatorios de las ideas que todavía debemos validar con el cliente.
+La IA también se equivocó al proponer módulos genéricos de análisis financiero y funciones avanzadas que no contemplan los permisos de rol ni la privacidad de datos requerida por la cooperativa. Lo detectamos al revisar el flujo de trabajo real y al contrastar las sugerencias con las restricciones de seguridad que debe tener el sistema.
+
 3. ¿Qué haríamos distinto la próxima semana?
 La próxima semana proporcionaríamos a la IA información más específica sobre los procesos de la cooperativa y utilizaríamos sus respuestas como propuestas que debemos contrastar, no como verdades definitivas. También validaríamos los requisitos con el cliente antes de tomar decisiones arquitectónicas y documentaríamos por qué elegimos cada alternativa.
+Además, utilizaría la IA principalmente para refinar la redacción de requerimientos técnicos ya validados, en lugar de pedirle que genere ideas de diseño desde cero.
