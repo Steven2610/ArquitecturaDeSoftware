@@ -43,7 +43,7 @@ actor "Administrador\nde la plataforma" as Admin
 ' SISTEMA VISIÓN INTEGRAL 360
 ' =====================================
 
-rectangle "Sistema o Integral 360" {
+rectangle "Sistema Visión Integral 360" {
 
   package "Consulta y seguimiento" {
 
@@ -124,10 +124,11 @@ Timer -- CU10
 
 CU01 ..> CU04 : <<include>>
 
-' Al sincronizar, pueden detectarse
-' desviaciones que generen alertas
+' Después de consolidar información válida,
+' se ejecuta la evaluación de desviaciones.
+' Si no existen desviaciones, no se crean alertas.
 
-CU10 ..> CU09 : <<extend>>
+CU09 ..> CU10 : <<include>>
 
 ' =====================================
 ' NOTAS
