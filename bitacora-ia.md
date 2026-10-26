@@ -111,3 +111,26 @@ Fuente: https://git-scm.com/docs/git-merge
 
   
 - **Decisión:** Mantener la organización actual con ramas individuales y Pull Requests. Cuando comience el desarrollo del código, considerar el uso de ramas por funcionalidades y revisar los cambios antes de integrarlos.
+
+
+
+
+### IA-06 · 26/10/2026 · S3 – Preparación del PDF de entrega del DAS
+
+- **Integrante:** Diana Bermeo.
+- **Herramienta:** ChatGPT – GPT-6.
+- **Objetivo:** Organizar la presentación del documento de casos de uso para cumplir con el formato de entrega solicitado por el docente.
+
+- **Prompt:** (Resumen de la consulta) Consulté cómo preparar un documento PDF a partir del archivo Markdown del DAS, conservando la información desarrollada e incorporando una portada institucional, el diagrama UML, las tablas y las especificaciones de los casos de uso.
+
+- **Respuesta (resumen):** La IA ayudó a estructurar el documento en formato PDF, incluyendo una portada con los integrantes  y los cinco apartados solicitados para la sección 2 del DAS. 
+
+- **Qué usamos:** La organización del documento PDF, el diseño de la portada, la presentación de las tablas y la incorporación del diagrama UML para facilitar la lectura del trabajo.
+
+- **Qué descartamos y por qué:** Se descartó una primera versión del PDF porque no incorporaba correctamente la imagen del diagrama UML, que es uno de los elementos obligatorios de la entrega.
+
+- **Verificación:** Se contrastó la estructura del documento con las indicaciones del Taller 2. Se revisó que el PDF generado incluyera la portada, los cinco apartados y el diagrama UML, además de comprobar la visualización de las tablas. Queda pendiente la revisión final del equipo antes de subirlo a Canvas.
+
+- **¿Error de la IA?:** Omisión. En la primera conversión no se incorporó correctamente la imagen del diagrama UML. Se detectó el problema y se corrigió antes de generar la versión final.
+
+- **Decisión del grupo:** Se preparó el documento PDF conservando el contenido del DAS elaborado anteriormente, con una presentación uniforme y los apartados requeridos. La versión queda pendiente de revisión y aprobación final del equipo para su entrega en Canvas.
