@@ -1,0 +1,149 @@
+
+@startuml
+
+title Diagrama UML de Casos de Uso 
+
+left to right direction
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam defaultFontName Arial
+skinparam ArrowColor #455A64
+
+skinparam actor {
+  BorderColor #34495E
+  FontColor #253746
+}
+
+skinparam usecase {
+  BackgroundColor #EDF4FA
+  BorderColor #376A92
+  FontColor #203040
+}
+
+skinparam rectangle {
+  BorderColor #607D8B
+  BackgroundColor white
+}
+
+' =====================================
+' ACTORES 
+' =====================================
+
+actor "Jefa del Departamento\nde Desarrollo de Software" as Jefa
+
+actor "Alta direccion" as Direccion
+
+actor "Responsable\nde proyecto" as Responsable
+
+actor "Administrador\nde la plataforma" as Admin
+
+' =====================================
+' SISTEMA VISIÓN INTEGRAL 360
+' =====================================
+
+rectangle "Sistema o Integral 360" {
+
+  package "Consulta y seguimiento" {
+
+    usecase "CU-01\nConsultar panorama\nde proyectos" as CU01
+
+    usecase "CU-02\nRevisar detalle\nde proyecto" as CU02
+
+    usecase "CU-03\nConsultar iniciativas\ny requerimientos" as CU03
+
+    usecase "CU-04\nConsultar indicadores\nde avance" as CU04
+
+    usecase "CU-05\nRevisar alertas\nde retrasos" as CU05
+
+    usecase "CU-06\nConsultar hitos\ny plazos" as CU06
+
+    usecase "CU-07\nConsultar seguimiento\nsemanal" as CU07
+
+    usecase "CU-08\nComparar estado\nde proyectos" as CU08
+  }
+
+  package "Integración y alertas" {
+
+    usecase "CU-09\nSincronizar fuentes\nde informacion" as CU09
+
+    usecase "CU-10\nGenerar alertas\npor desviaciones" as CU10
+
+    usecase "CU-11\nRevisar problemas\nde sincronizacion" as CU11
+  }
+}
+
+' =====================================
+' SISTEMAS EXTERNOS
+' =====================================
+
+actor "Redmine" as Redmine <<Sistema externo>>
+
+actor "Excel online" as Excel <<Sistema externo>>
+
+actor "Temporizador" as Timer <<Sistema externo>>
+
+' =====================================
+' ASOCIACIONES CON USUARIOS
+' =====================================
+
+Jefa -- CU01
+Jefa -- CU04
+Jefa -- CU05
+Jefa -- CU08
+
+Direccion -- CU01
+Direccion -- CU04
+Direccion -- CU08
+
+Responsable -- CU02
+Responsable -- CU03
+Responsable -- CU05
+Responsable -- CU06
+Responsable -- CU07
+
+Admin -- CU09
+Admin -- CU11
+
+' =====================================
+' ASOCIACIONES CON SISTEMAS EXTERNOS
+' =====================================
+
+Redmine -- CU09
+Excel -- CU09
+
+Timer -- CU09
+Timer -- CU10
+
+' =====================================
+' RELACIONES UML
+' =====================================
+
+' El panorama general incorpora indicadores
+
+CU01 ..> CU04 : <<include>>
+
+' Al sincronizar, pueden detectarse
+' desviaciones que generen alertas
+
+CU10 ..> CU09 : <<extend>>
+
+' =====================================
+' NOTAS
+' =====================================
+
+note bottom of CU09
+  Integra información de
+  Redmine y Excel online.
+  Relaciona proyectos,
+  iniciativas y requerimientos.
+end note
+
+note bottom of CU10
+  Genera alertas cuando
+  se identifican retrasos
+  o desviaciones.
+end note
+
+@enduml
