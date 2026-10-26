@@ -325,7 +325,7 @@ Esta sección se apoya en los siguientes requisitos existentes: RF-01 y RF-02 (c
 | CU-11 | Revisar problemas de sincronización | Administrador de plataforma | Media | Permite identificar fuentes sin actualizar o registros rechazados. |
 
 ## 3. Diagrama UML
-![Diagrama UML de Visión Integral 360](../diagramas/vision360-casos-de-uso.png)
+![Diagrama UML de Visión Integral 360](../diagramas/diagrama-casos-de-uso.png)
 
 **Archivo fuente:** [Ver código PlantUML](../diagramas/vision360-casos-de-uso.puml)
 
