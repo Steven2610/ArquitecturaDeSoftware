@@ -544,4 +544,42 @@ Las especificaciones se relacionan con los actores, el diagrama UML y los requis
 ---
 
 
+## 5. Matriz de trazabilidad
 
+La matriz de trazabilidad permite relacionar los objetivos específicos de Visión Integral 360 con los casos de uso identificados en el catálogo. Su finalidad es comprobar que las funcionalidades propuestas contribuyen a los objetivos del proyecto y mantienen coherencia con los requisitos establecidos en la primera versión del DAS.
+
+### 5.1. Relación entre objetivos específicos y casos de uso
+
+| Código | Objetivo específico | Casos de uso relacionados | Justificación de la relación |
+|---|---|---|---|
+| **OE-01** | Identificar y documentar a los interesados, sus roles, preocupaciones y restricciones, de acuerdo con ISO/IEC/IEEE 42010. | CU-01, CU-02, CU-05, CU-09, CU-11 | Estos casos ayudan a identificar las necesidades y responsabilidades de la jefa de Desarrollo de Software, la alta dirección, los responsables de proyectos y el administrador de la plataforma. Esta información sirve de apoyo para documentar los interesados. |
+| **OE-02** | Definir mecanismos de obtención, normalización y correspondencia entre los datos de Redmine y del Excel compartido. | CU-03, CU-07, CU-09, CU-11 | CU-09 permite obtener y consolidar los registros de ambas fuentes. CU-03 y CU-07 permiten consultar la información relacionada, mientras que CU-11 ayuda a identificar problemas en la sincronización o correspondencia de datos. |
+| **OE-03** | Describir la solución mediante las vistas del modelo 4+1, manteniendo trazabilidad entre requisitos, escenarios y componentes. | CU-01, CU-02, CU-03, CU-09, CU-10 | Estos casos permiten representar las principales interacciones del sistema y servirán como referencia para elaborar las vistas arquitectónicas, los diagramas y las relaciones entre los requisitos y los componentes de Visión Integral 360. |
+| **OE-04** | Priorizar atributos de calidad verificables, especialmente interoperabilidad, seguridad y fiabilidad, y justificar las decisiones arquitectónicas. | CU-01, CU-09, CU-10, CU-11 | CU-01 requiere controlar el acceso a la información. CU-09 aborda la interoperabilidad y los fallos de las fuentes. CU-10 debe evitar alertas incorrectas o duplicadas y CU-11 permite revisar problemas de sincronización. Estos casos ayudan a definir y evaluar los atributos de calidad. |
+| **OE-05** | Construir un prototipo mínimo que integre al menos dos fuentes reales autorizadas o simuladas, muestre información consolidada y evidencie KPI y alertas. | CU-01, CU-02, CU-04, CU-05, CU-09, CU-10 | CU-09 consolida la información de Redmine y Excel online. CU-01 y CU-02 permiten consultar los proyectos; CU-04 presenta indicadores de avance; CU-10 genera alertas y CU-05 permite revisarlas. En conjunto, estos casos representan las funciones principales del prototipo. |
+
+### 5.2. Relación con los requisitos funcionales
+
+La siguiente tabla complementa la trazabilidad, relacionando los requisitos funcionales RF-01 a RF-08 de la primera versión con los casos de uso correspondientes.
+
+| Requisito | Descripción | Casos de uso relacionados |
+|---|---|---|
+| **RF-01** | Consultar registros de proyectos, iniciativas y requerimientos desde Redmine. | CU-03, CU-09 |
+| **RF-02** | Obtener los datos complementarios del Excel online compartido. | CU-07, CU-09 |
+| **RF-03** | Normalizar campos y relacionar registros comunes mediante reglas verificables. | CU-03, CU-09, CU-11 |
+| **RF-04** | Mostrar la vista consolidada de cada proyecto, sus hitos, avances y responsables. | CU-01, CU-02, CU-06 |
+| **RF-05** | Calcular indicadores automáticamente a partir de fórmulas documentadas. | CU-01, CU-04 |
+| **RF-06** | Señalar retrasos, riesgos o desviaciones mediante reglas de alerta. | CU-05, CU-10 |
+| **RF-07** | Ofrecer vistas y consultas adecuadas a los perfiles de responsable de proyecto y alta dirección. | CU-01, CU-02, CU-08 |
+| **RF-08** | Mostrar el origen y la última fecha de actualización de los datos consultados. | CU-01, CU-07, CU-09, CU-11 |
+
+### 5.3. Verificación de la trazabilidad
+
+La matriz permite comprobar que:
+
+1. Los cinco objetivos específicos de la primera versión se encuentran relacionados con al menos un caso de uso.
+2. Los once casos de uso del catálogo participan en la cobertura de los objetivos del proyecto.
+3. Los ocho requisitos funcionales iniciales se encuentran relacionados con los casos de uso correspondientes.
+4. Los tres casos seleccionados para su especificación completa (CU-01, CU-09 y CU-10) representan funciones prioritarias de consulta, integración y generación de alertas.
+
+Es importante señalar que los objetivos OE-01 y OE-03 no se cumplen únicamente mediante funcionalidades del sistema. Su desarrollo también requiere documentar los interesados y elaborar las vistas arquitectónicas del DAS. De manera similar, OE-04 necesita escenarios y pruebas para verificar los atributos de calidad.
