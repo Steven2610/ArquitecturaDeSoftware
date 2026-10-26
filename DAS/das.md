@@ -325,9 +325,9 @@ Esta sección se apoya en los siguientes requisitos existentes: RF-01 y RF-02 (c
 | CU-11 | Revisar problemas de sincronización | Administrador de plataforma | Media | Permite identificar fuentes sin actualizar o registros rechazados. |
 
 ## 3. Diagrama UML
+![Diagrama UML de casos de uso de Visión Integral 360](diagramas/vision360-casos-de-uso.png)
 
-
-**Archivo fuente editable:** 
+**Archivo fuente editable:** [`vision360-casos-de-uso.puml`](diagramas/vision360-casos-de-uso.puml).
 
 - CU-01 «include» CU-04: consultar un panorama siempre incluye sus indicadores de avance.
 - CU-09 «include» CU-10: **decisión preliminar del equipo**: toda sincronización completada con datos válidos desencadena la evaluación de reglas de alerta; evaluar las reglas no significa que siempre se genere una alerta. Cuando ambas fuentes fallan, el flujo excepcional termina sin invocar CU-10.
