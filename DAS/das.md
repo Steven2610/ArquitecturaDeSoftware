@@ -304,6 +304,22 @@ Esta sección se apoya en los siguientes requisitos existentes: RF-01 y RF-02 (c
 | Alta dirección | Persona | Conocer avances y riesgos para tomar decisiones. | Actor previsto en el TDR. |
 | Responsable de proyecto | Persona | Revisar proyectos, iniciativas, requerimientos, hitos y alertas. | Actor previsto en el TDR. |
 | Administrador de la plataforma | Persona | Solicitar sincronizaciones y revisar problemas de integración. | Rol propuesto; pendiente de validación. |
-| Temporizador externo (simulado) | Sistema externo / actor no humano | Iniciar la sincronización programada y la evaluación automática de alertas. | Candidato técnico simulado; no es un usuario humano. |
-| Redmine (simulado) | Sistema externo | Suministrar registros de proyectos, iniciativas y requerimientos. | Sistema real identificado; acceso simulado en el trabajo. |
-| Excel online (simulado) | Sistema externo | Suministrar información complementaria registrada semanalmente. | Fuente real descrita en la entrevista; acceso simulado. |
+| Temporizador externo  | Sistema externo | Iniciar la sincronización programada y la evaluación automática de alertas. | Candidato técnico ; no es un usuario humano. |
+| Redmine  | Sistema externo | Suministrar registros de proyectos, iniciativas y requerimientos. | Sistema real identificado; acceso  en el trabajo. |
+| Excel online  | Sistema externo | Suministrar información complementaria registrada semanalmente. | Fuente real descrita en la entrevista; acceso. |
+
+## 2. Catálogo priorizado
+
+| ID | Caso de uso | Actor principal | Prioridad | Justificación |
+| --- | --- | --- | --- | --- |
+| CU-01 | Consultar panorama de proyectos | Jefa de Desarrollo / Alta dirección | Alta | Ofrece una visión general para la toma de decisiones. |
+| CU-02 | Revisar detalle de proyecto | Responsable de proyecto | Alta | Permite conocer avances y responsables de un proyecto específico. |
+| CU-03 | Consultar iniciativas y requerimientos | Responsable de proyecto | Alta | Relaciona los tres conceptos comunes a Redmine y Excel. |
+| CU-04 | Consultar indicadores de avance | Jefa de Desarrollo / Alta dirección | Alta | Resume información mediante indicadores automáticos. |
+| CU-05 | Revisar alertas de retrasos | Responsable de proyecto / Jefa de Desarrollo | Alta | Permite conocer situaciones que necesitan atención. |
+| CU-06 | Consultar hitos y plazos | Responsable de proyecto | Media | Permite revisar compromisos y fechas previstas. |
+| CU-07 | Consultar seguimiento semanal | Responsable de proyecto | Media | Aprovecha datos adicionales de las reuniones registrados en Excel. |
+| CU-08 | Comparar estado de proyectos | Jefa de Desarrollo / Alta dirección | Media | Facilita comparar diferentes proyectos en un mismo período. |
+| CU-09 | Sincronizar fuentes de información | Temporizador externo / Administrador | Alta | Integra la información de Redmine y Excel. |
+| CU-10 | Generar alertas por desviaciones | Temporizador externo | Alta | Detecta automáticamente posibles retrasos o incumplimientos. |
+| CU-11 | Revisar problemas de sincronización | Administrador de plataforma | Media | Permite identificar fuentes sin actualizar o registros rechazados. |
