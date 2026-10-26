@@ -283,3 +283,27 @@ Se anexan tres escenarios preliminares correspondientes a los atributos de calid
 | Respuesta | Conservar los datos válidos anteriores y mostrar la fecha de última actualización y el fallo. |
 | Medida de respuesta | En 10 pruebas con interrupción, mantener disponibles los registros previos en las 10 y mostrar estado de error. |
 
+# DAS – Sección 2: Casos de uso – Visión Integral 360
+
+**Entrega:** Semana 3, 26 de octubre de 2026  
+**Origen:** continuidad de la propuesta de solución del Taller 2; requerimientos RF-01 a RF-08, stakeholders y objetivos específicos conservados.
+
+> **Nota de alcance:** según la entrevista, se utilizan Redmine y un Excel online compartido. GitLab y SonarQube se describen como contexto de Redmine, pero no como fuentes directas de este prototipo. Para la práctica del curso, Redmine y Excel se representan con datos y servicios simulados. Los indicadores y reglas pendientes se tratarán como supuestos, no como definiciones oficiales de la cooperativa.
+
+## Contexto y relación con la primera versión
+
+La primera versión del proyecto ya establece como fuentes **Redmine** y el **Excel**. Ambas manejan los conceptos de **proyectos, iniciativas y requerimientos**, pero todavía no sabemos si usan identificadores equivalentes. El reto consiste en consolidar información de ambas fuentes para mostrar avances, indicadores y alertas, evitando relaciones incorrectas.
+
+Esta sección se apoya en los siguientes requisitos existentes: RF-01 y RF-02 (consultar fuentes), RF-03 (correspondencia), RF-04 (estado de proyectos), RF-05 (KPI), RF-06 (alertas), RF-07 (vistas por perfil) y RF-08 (origen y fecha de actualización).
+
+## 1. Actores
+
+| Actor | Tipo | Objetivo principal | Estado |
+| --- | --- | --- | --- |
+| Jefa del Departamento de Desarrollo de Software | Persona | Consultar la situación global de los proyectos, indicadores y alertas. | Identificada durante la entrevista. |
+| Alta dirección | Persona | Conocer avances y riesgos para tomar decisiones. | Actor previsto en el TDR. |
+| Responsable de proyecto | Persona | Revisar proyectos, iniciativas, requerimientos, hitos y alertas. | Actor previsto en el TDR. |
+| Administrador de la plataforma | Persona | Solicitar sincronizaciones y revisar problemas de integración. | Rol propuesto; pendiente de validación. |
+| Temporizador externo (simulado) | Sistema externo / actor no humano | Iniciar la sincronización programada y la evaluación automática de alertas. | Candidato técnico simulado; no es un usuario humano. |
+| Redmine (simulado) | Sistema externo | Suministrar registros de proyectos, iniciativas y requerimientos. | Sistema real identificado; acceso simulado en el trabajo. |
+| Excel online (simulado) | Sistema externo | Suministrar información complementaria registrada semanalmente. | Fuente real descrita en la entrevista; acceso simulado. |
