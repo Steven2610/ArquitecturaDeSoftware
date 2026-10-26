@@ -331,3 +331,217 @@ Esta sección se apoya en los siguientes requisitos existentes: RF-01 y RF-02 (c
 
 - CU-01 «include» CU-04: consultar un panorama siempre incluye sus indicadores de avance.
 - CU-09 «include» CU-10: **decisión preliminar del equipo**: toda sincronización completada con datos válidos desencadena la evaluación de reglas de alerta; evaluar las reglas no significa que siempre se genere una alerta. Cuando ambas fuentes fallan, el flujo excepcional termina sin invocar CU-10.
+
+## 4. Especificaciones de casos de uso
+
+Se seleccionan **CU-01, CU-09 y CU-10** porque son tres de los casos de mayor prioridad del catálogo y cubren funciones centrales de Visión Integral 360: consultar el panorama de proyectos, consolidar información de Redmine y Excel online, y generar alertas por desviaciones.
+
+Las especificaciones se relacionan con los actores, el diagrama UML y los requisitos funcionales RF-01 a RF-08 definidos anteriormente.
+
+### CU-01 – Consultar panorama de proyectos
+
+| Campo | Descripción |
+|---|---|
+| **ID** | CU-01 |
+| **Actor principal** | Jefa del Departamento de Desarrollo de Software / Alta dirección |
+| **Otros actores** | Ninguno |
+| **Objetivo** | Consultar una vista general de los proyectos para conocer sus estados, indicadores, alertas y fechas de actualización. |
+| **Relación UML** | Incluye CU-04 – Consultar indicadores de avance. |
+| **Requisitos relacionados** | RF-04, RF-05, RF-07 y RF-08 |
+
+#### Precondiciones
+
+1. El usuario tiene una sesión activa en Visión Integral 360.
+2. El usuario cuenta con permisos para consultar el panorama de proyectos.
+3. El sistema dispone de información consolidada o tiene registrado que todavía no existen datos disponibles.
+
+#### Postcondiciones
+
+**Si termina bien:**
+
+- Se presenta la información general de los proyectos que el usuario tiene autorización para consultar.
+- Se muestran los indicadores disponibles y la fecha de última actualización.
+- Los datos consultados permanecen sin modificaciones.
+
+**Si falla:**
+
+- El sistema informa que no fue posible completar la consulta.
+- No se muestra información restringida ni se alteran los registros existentes.
+
+#### Flujo principal
+
+| Paso | Acción |
+|---|---|
+| 1 | **Usuario:** Solicita consultar el panorama general de proyectos. |
+| 2 | **Sistema:** Verifica los permisos y presenta los períodos disponibles para consulta. |
+| 3 | **Usuario:** Selecciona el período de seguimiento que desea revisar. |
+| 4 | **Sistema:** Recupera los proyectos correspondientes al período seleccionado y presenta su estado general. |
+| 5 | **Usuario:** Solicita revisar el resumen de indicadores del período seleccionado. |
+| 6 | **Sistema:** Ejecuta CU-04 para presentar los indicadores de avance y muestra las alertas disponibles y la fecha de última actualización. |
+| 7 | **Usuario:** Selecciona un criterio para filtrar los proyectos, como estado o responsable. |
+| 8 | **Sistema:** Actualiza el panorama y presenta los proyectos correspondientes al filtro seleccionado. |
+
+#### Flujos alternativos
+
+- **FA-01 (Paso 4).** No existen proyectos correspondientes al período seleccionado. El sistema informa que no se encontraron resultados y permite regresar al paso 3 para elegir otro período.
+
+- **FA-02 (Paso 6).** La información de alguna fuente no se encuentra actualizada. El sistema presenta los indicadores disponibles e informa la fecha real de última actualización. La consulta continúa en el paso 7.
+
+- **FA-03 (Paso 8).** No existen proyectos que coincidan con el filtro seleccionado. El sistema informa que no hay resultados y permite regresar al paso 7 para seleccionar otro criterio.
+
+#### Excepciones
+
+**E-01 (Paso 4).** El sistema no puede recuperar la información consolidada de los proyectos debido a una falla del servicio. Informa al usuario que no es posible completar la consulta y termina el caso de uso.
+
+#### Requisitos especiales
+
+1. **Rendimiento:** En una prueba con 100 proyectos y 10 consultas concurrentes, al menos el 95 % de las consultas deberá responder en menos de 3 segundos.
+2. **Seguridad:** El sistema deberá mostrar únicamente los proyectos autorizados para el perfil del usuario.
+3. **Trazabilidad:** Se deberá identificar la fecha de última actualización de la información presentada.
+4. **Usabilidad:** El usuario deberá poder identificar el estado general de un proyecto y sus indicadores principales mediante un máximo de tres acciones de navegación.
+
+**Observación:** Si no existen datos suficientes para calcular un indicador, el sistema mostrará «No disponible» en lugar de presentar un valor sin sustento.
+
+---
+
+### CU-09 – Sincronizar fuentes de información
+
+| Campo | Descripción |
+|---|---|
+| **ID** | CU-09 |
+| **Actor principal** | Temporizador externo |
+| **Actor iniciador alternativo** | Administrador de la plataforma |
+| **Actores externos participantes** | Redmine y Excel online |
+| **Objetivo** | Obtener y consolidar los registros de Redmine y Excel online, relacionando proyectos, iniciativas y requerimientos mediante reglas verificables. |
+| **Relación UML** | Incluye CU-10 – Generar alertas por desviaciones, cuando la consolidación dispone de información válida. |
+| **Requisitos relacionados** | RF-01, RF-02, RF-03 y RF-08 |
+
+#### Precondiciones
+
+1. El sistema cuenta con mecanismos de acceso configurados para Redmine y Excel online.
+2. Existen reglas iniciales para validar y relacionar proyectos, iniciativas y requerimientos.
+3. El servicio de sincronización está habilitado y no existe otra ejecución incompatible en curso.
+
+#### Postcondiciones
+
+**Si termina bien:**
+
+- La información válida de Redmine y Excel online queda consolidada y disponible para consulta.
+- Los registros conservan la referencia de su fuente de origen.
+- Se registra la fecha, hora y resultado de la sincronización.
+- Se ejecuta CU-10 para evaluar posibles alertas sobre la información consolidada.
+
+**Si falla:**
+
+- Se conserva la última versión válida de los datos.
+- Se registra el problema y se identifica la fuente afectada.
+- No se crean relaciones entre registros cuya correspondencia no pueda confirmarse.
+- Si no se obtiene información de ninguna fuente, la sincronización termina sin iniciar una nueva evaluación de alertas.
+
+#### Flujo principal
+
+| Paso | Acción |
+|---|---|
+| 1 | **Temporizador:** Solicita iniciar la sincronización programada de información. |
+| 2 | **Sistema:** Solicita a Redmine los registros disponibles de proyectos, iniciativas y requerimientos. |
+| 3 | **Redmine:** Entrega la información solicitada. |
+| 4 | **Sistema:** Solicita a Excel online los registros complementarios del seguimiento semanal. |
+| 5 | **Excel online:** Entrega la información registrada en el archivo compartido. |
+| 6 | **Sistema:** Valida los registros, relaciona la información confiable, guarda los resultados y registra la sincronización. Después ejecuta CU-10 para evaluar posibles desviaciones. |
+
+#### Flujos alternativos
+
+- **FA-01 (Paso 3).** Redmine no responde a la solicitud. El sistema registra el problema, conserva la última información válida de esa fuente y continúa en el paso 4 para consultar Excel online. Si esta segunda fuente responde, la actualización se registra como parcial y se procesan los datos disponibles.
+
+- **FA-02 (Paso 5).** Excel online no responde a la solicitud. El sistema registra el problema, conserva la última información válida de Excel y continúa en el paso 6 con los datos recibidos de Redmine. La actualización se registra como parcial.
+
+- **FA-03 (Paso 6).** Se identifican registros con coincidencias ambiguas entre Redmine y Excel online. El sistema no los relaciona automáticamente, registra la observación y continúa procesando los demás registros válidos.
+
+- **FA-04 (Paso 1).** El administrador de la plataforma solicita una sincronización manual. El sistema comprueba que tenga autorización y continúa desde el paso 2.
+
+#### Excepciones
+
+**E-01 (Paso 5).** Redmine no respondió a la solicitud anterior y Excel online tampoco se encuentra disponible. El sistema registra el fallo de ambas fuentes, conserva la última información válida y termina la sincronización sin actualizar los registros ni iniciar CU-10.
+
+#### Requisitos especiales
+
+1. **Interoperabilidad:** En una prueba con 200 registros, el sistema deberá procesar la información válida en menos de 5 minutos.
+2. **Integridad:** En un conjunto de prueba con correspondencias conocidas, no deberá generar asociaciones falsas entre proyectos, iniciativas y requerimientos.
+3. **Fiabilidad:** Cada sincronización deberá quedar registrada con fecha, hora, resultado y fuentes afectadas, indicando si fue exitosa, parcial o fallida.
+4. **Seguridad:** El acceso a Redmine y Excel online deberá realizarse mediante mecanismos autorizados y sin exponer credenciales.
+
+**Observación:** Las fuentes principales del proyecto son Redmine y Excel online. GitLab y SonarQube forman parte del contexto descrito en la entrevista, pero no se incorporan como fuentes directas en esta etapa.
+
+---
+
+### CU-10 – Generar alertas por desviaciones
+
+| Campo | Descripción |
+|---|---|
+| **ID** | CU-10 |
+| **Actor principal** | Temporizador externo |
+| **Inicio adicional** | Ejecución del CU-10 desde CU-09 después de consolidar información válida |
+| **Otros actores** | Ninguno |
+| **Objetivo** | Evaluar la información de proyectos e hitos para identificar retrasos o desviaciones y registrar las alertas correspondientes. |
+| **Relación UML** | Caso incluido por CU-09 y ejecutable también mediante programación automática. |
+| **Requisitos relacionados** | RF-05, RF-06 y RF-08 |
+
+#### Precondiciones
+
+1. El sistema dispone de información consolidada válida sobre al menos un proyecto.
+2. Se encuentran definidas las reglas iniciales para identificar retrasos y desviaciones.
+3. El proceso de evaluación de alertas se encuentra habilitado.
+
+#### Postcondiciones
+
+**Si termina bien:**
+
+- Las condiciones que cumplen las reglas establecidas quedan registradas como alertas consultables.
+- Se registra la fecha y hora de la evaluación.
+- No se crean alertas duplicadas para un mismo proyecto y una misma condición activa.
+- Si no se identifican desviaciones, la evaluación finaliza correctamente sin generar alertas nuevas.
+
+**Si falla:**
+
+- No se generan alertas con información insuficiente o no verificable.
+- Se registra la causa por la cual no pudo completarse la evaluación.
+- Las alertas válidas registradas anteriormente se conservan.
+
+#### Flujo principal
+
+| Paso | Acción |
+|---|---|
+| 1 | **Temporizador:** Solicita iniciar la evaluación programada de posibles desviaciones. |
+| 2 | **Sistema:** Recupera los proyectos e hitos de la última información consolidada válida. |
+| 3 | **Sistema:** Verifica que los registros contengan fechas, estados y datos suficientes para su evaluación. |
+| 4 | **Sistema:** Aplica las reglas definidas para identificar retrasos o desviaciones. |
+| 5 | **Sistema:** Identifica las condiciones de alerta y comprueba si ya existen alertas activas para esos proyectos. |
+| 6 | **Sistema:** Registra las alertas nuevas sin duplicar las existentes, guarda el resultado de la evaluación y deja la información disponible para consulta. |
+
+#### Flujos alternativos
+
+- **FA-01 (Paso 1).** La evaluación se inicia como parte de CU-09 después de consolidar información válida. El sistema comienza directamente desde el paso 2, utilizando la información actualizada.
+
+- **FA-02 (Paso 3).** Un proyecto no tiene datos suficientes para identificar una desviación. El sistema registra que ese proyecto no puede evaluarse y continúa con los demás registros en el paso 4.
+
+- **FA-03 (Paso 5).** Ningún proyecto presenta condiciones que requieran una alerta. El sistema registra que la evaluación se completó sin encontrar nuevas desviaciones y continúa en el paso 6.
+
+- **FA-04 (Paso 5).** Una condición detectada ya tiene una alerta activa. El sistema conserva esa alerta, evita generar otra igual y continúa en el paso 6.
+
+#### Excepciones
+
+**E-01 (Paso 2).** El sistema no puede recuperar la información consolidada necesaria para evaluar los proyectos. Registra el problema y termina el proceso sin generar nuevas alertas.
+
+#### Requisitos especiales
+
+1. **Rendimiento:** En una prueba con 100 proyectos, el sistema deberá completar la evaluación en menos de 60 segundos.
+2. **Exactitud:** En un conjunto de 20 situaciones previamente clasificadas, deberá identificar correctamente las 20 condiciones de acuerdo con las reglas establecidas.
+3. **Fiabilidad:** No deberán existir dos alertas activas para el mismo proyecto y la misma condición.
+4. **Trazabilidad:** Cada alerta deberá indicar el proyecto relacionado, la condición detectada y la fecha de generación.
+
+**Observación:** Las fórmulas de avance, los umbrales de retraso y las condiciones exactas para generar alertas todavía deben validarse con los responsables de la cooperativa.
+
+---
+
+
+
