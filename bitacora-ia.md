@@ -134,3 +134,48 @@ Fuente: https://git-scm.com/docs/git-merge
 - **¿Error de la IA?:** Omisión. En la primera conversión no se incorporó correctamente la imagen del diagrama UML. Se detectó el problema y se corrigió antes de generar la versión final.
 
 - **Decisión del grupo:** Se preparó el documento PDF conservando el contenido del DAS elaborado anteriormente, con una presentación uniforme y los apartados requeridos. La versión queda pendiente de revisión y aprobación final del equipo para su entrega en Canvas.
+
+
+### IA-07 · 26/10/2026 · S3 – Correspondencia de datos entre Redmine y Excel
+
+- **Integrante:** Lady Robalino.
+- **Herramienta:** ChatGPT – GPT-6.
+
+- **Objetivo:** Revisar si el caso de uso CU-09 maneja correctamente las inconsistencias que pueden presentarse al relacionar información de Redmine y Excel online.
+
+- **Prompt:** En nuestro proyecto Visión Integral 360 tenemos el requisito RF-03, que establece la normalización y correspondencia de registros de Redmine y Excel online. En el caso de uso CU-09 definimos que las coincidencias ambiguas no deben relacionarse automáticamente. ¿Es correcto manejar esta situación como un flujo alternativo? ¿Qué aspectos deberíamos verificar para evitar asociaciones incorrectas entre proyectos, iniciativas y requerimientos?
+
+- **Respuesta (resumen):** La IA explicó que las coincidencias ambiguas pueden manejarse como un flujo alternativo cuando no impiden continuar con los demás registros. Recomendó comprobar los identificadores y campos comunes antes de relacionar información y dejar registrados los casos que necesiten revisión.
+
+- **Qué usamos:** La recomendación de conservar el manejo de coincidencias ambiguas en el flujo alternativo FA-03 de CU-09, permitiendo continuar con los registros válidos sin establecer relaciones que no se puedan confirmar.
+
+- **Qué descartamos y por qué:** Se descartó relacionar los registros únicamente por la similitud de sus nombres, porque podría provocar asociaciones incorrectas entre proyectos, iniciativas y requerimientos de las dos fuentes.
+
+- **Verificación:** Se contrastó la recomendación con RF-03 de la primera versión del DAS y con FA-03 de CU-09. Se comprobó que ambos contemplan la validación de registros y el tratamiento de coincidencias ambiguas. Los identificadores disponibles en las fuentes todavía están pendientes de confirmación.
+
+- **¿Error de la IA?:** No. La recomendación mantiene coherencia con el requisito RF-03 y el flujo alternativo FA-03 de CU-09.
+
+- **Decisión del grupo:** Propuesta pendiente de validación del equipo: mantener las coincidencias ambiguas como flujo alternativo de CU-09, sin relacionarlas automáticamente y dejando constancia de los registros que requieren revisión.
+
+---
+
+### IA-08 · 26/10/2026 · S3 – Seguridad y permisos de acceso
+
+- **Integrante:** Lady Robalino.
+- **Herramienta:** ChatGPT – GPT-6.
+
+- **Objetivo:** Comprobar que las condiciones y verificaciones de acceso del caso de uso CU-01 sean coherentes con los requisitos de seguridad de Visión Integral 360.
+
+- **Prompt:** En Visión Integral 360 tenemos diferentes usuarios, como la jefa de Desarrollo de Software, la alta dirección y los responsables de proyectos. En el caso de uso CU-01 establecimos que el usuario debe tener permisos para consultar la información y que el sistema los verifica antes de presentar los proyectos. ¿Esta condición está correctamente planteada como precondición y dentro del flujo principal? ¿Qué deberíamos revisar para mantener la seguridad sin definir permisos institucionales que todavía no han sido confirmados?
+
+- **Respuesta (resumen):** La IA explicó que es correcto establecer los permisos de acceso como una precondición y comprobarlos nuevamente al ejecutar la consulta. También recomendó diferenciar el acceso según el perfil del usuario, sin asumir permisos específicos que la cooperativa todavía no ha confirmado.
+
+- **Qué usamos:** La recomendación de mantener la autorización del usuario como precondición y la verificación de permisos en el paso 2 del flujo principal de CU-01, antes de presentar la información de los proyectos.
+
+- **Qué descartamos y por qué:** Se descartó establecer permisos definitivos para cada cargo institucional, porque todavía no contamos con información confirmada sobre qué proyectos puede consultar cada perfil.
+
+- **Verificación:** Se comparó la recomendación con las precondiciones, el paso 2 y el requisito especial de seguridad de CU-01. También se revisaron RF-07, relacionado con las consultas diferenciadas, y RNF-02, que establece la protección frente a consultas no autorizadas.
+
+- **¿Error de la IA?:** No. La explicación es coherente con los requisitos documentados. La distribución exacta de permisos continúa pendiente de validación con la cooperativa.
+
+- **Decisión del grupo:** Propuesta pendiente de validación del equipo: conservar los permisos como precondición de CU-01 y mantener su verificación durante la consulta. Los permisos específicos por perfil se definirán cuando exista información confirmada por la cooperativa.
