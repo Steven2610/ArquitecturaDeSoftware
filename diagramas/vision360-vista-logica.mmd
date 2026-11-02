@@ -1,0 +1,94 @@
+classDiagram
+direction LR
+class Proyecto {
+  +CodigoProyecto codigo
+  +NombreProyecto nombre
+  +EstadoProyecto estado
+  +ResponsableAsignado responsable
+  +FechaOpcional fechaFinPrevista
+}
+class Iniciativa {
+  +ReferenciaIniciativa referencia
+  +NombreIniciativa nombre
+  +EstadoIniciativa estado
+}
+class Requerimiento {
+  +ReferenciaRequerimiento referencia
+  +DescripcionRequerimiento descripcion
+  +EstadoRequerimiento estado
+  +Prioridad prioridad
+}
+class Hito {
+  +CodigoHito codigo
+  +DescripcionHito descripcion
+  +Fecha fechaCompromiso
+  +FechaOpcional fechaCumplimiento
+  +EstadoHito estado
+}
+class SeguimientoSemanal {
+  +Fecha fechaCorte
+  +TextoSeguimiento observacion
+  +FechaHora fechaRegistro
+}
+class Indicador {
+  +CodigoIndicador codigo
+  +NombreIndicador nombre
+  +DefinicionIndicador definicion
+  +ReglaCalculoOpcional formulaDocumentada
+  +UnidadMedida unidad
+}
+class ValorIndicador {
+  +PeriodoSeguimiento periodo
+  +ValorMedidaOpcional valor
+  +FechaHora fechaCalculo
+  +EstadoCalculo estadoCalculo
+}
+class ReglaAlerta {
+  +CodigoRegla codigo
+  +DescripcionRegla descripcion
+  +CondicionNegocio criterio
+  +VigenciaRegla estado
+}
+class Alerta {
+  +CodigoAlerta codigo
+  +DescripcionCondicion condicionDetectada
+  +FechaHora fechaGeneracion
+  +EstadoAlerta estado
+}
+class FuenteInformacion {
+  +NombreFuente nombre
+  +TipoFuente tipo
+  +FechaHoraOpcional ultimaActualizacionConocida
+}
+class ReferenciaOrigen {
+  +ReferenciaExterna referenciaEnFuente
+  +FechaHoraOpcional fechaActualizacionEnFuente
+  +EstadoCorrespondencia estadoCorrespondencia
+}
+class Sincronizacion {
+  +FechaHora fechaInicio
+  +FechaHoraOpcional fechaFin
+  +ResultadoSincronizacion resultado
+  +TextoOpcional observacion
+}
+class ResultadoFuente {
+  +EstadoConsultaFuente estadoConsulta
+  +FechaHora fechaConsulta
+  +CantidadRegistros cantidadValidos
+  +CantidadRegistros cantidadObservados
+}
+Proyecto "0..1" -- "0..*" Iniciativa : vinculacion propuesta
+Proyecto "0..1" -- "0..*" Requerimiento : vinculacion propuesta
+Proyecto "1" -- "0..*" Hito : tiene
+Proyecto "0..1" -- "0..*" SeguimientoSemanal : seguimiento asociado
+Proyecto "1" -- "0..*" ValorIndicador : presenta
+Indicador "1" -- "0..*" ValorIndicador : define
+Proyecto "1" -- "0..*" Alerta : registra
+ReglaAlerta "1" -- "0..*" Alerta : origina
+FuenteInformacion "1" -- "0..*" ReferenciaOrigen : identifica origen
+Proyecto "0..1" -- "0..*" ReferenciaOrigen : corresponde
+Iniciativa "0..1" -- "0..*" ReferenciaOrigen : corresponde
+Requerimiento "0..1" -- "0..*" ReferenciaOrigen : corresponde
+FuenteInformacion "1" -- "0..*" SeguimientoSemanal : provee
+Sincronizacion "1" *-- "1..*" ResultadoFuente : compone
+FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
