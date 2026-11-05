@@ -183,6 +183,7 @@ Requerimiento "0..1" -- "0..*" ReferenciaOrigen : corresponde
 FuenteInformacion "1" -- "0..*" SeguimientoSemanal : provee
 Sincronizacion "1" *-- "1..*" ResultadoFuente : compone
 FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
+
 ```
 
 **Restricciones que completan las multiplicidades:**
