@@ -435,7 +435,4 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | CU-10; RF-06, RF-08 | Proyecto, Hito, ReglaAlerta, Alerta, ReferenciaOrigen |
 | CU-11 | Sincronizacion, ResultadoFuente, ReferenciaOrigen |
 
-**Pendientes explícitos para la revisión:** confirmar las cinco preguntas literales de clase; confirmar jerarquía Proyecto–Iniciativa–Requerimiento y unicidad del destino de cada ReferenciaOrigen; confirmar correspondencia de seguimientos semanales con proyectos, campos de origen, reglas de correspondencia, definición de avance, umbrales y cardinalidad real de registros semanales. No crear una clase de permisos ni asignar reglas de acceso concretas mientras la cooperativa no las confirme.
-
-**Alcance del modelo:** no incluye controladores, interfaces web, tablas SQL, APIs, conectores, GitLab ni SonarQube como fuentes directas. Los roles humanos y el temporizador siguen identificados como actores, no como clases del dominio.
 
