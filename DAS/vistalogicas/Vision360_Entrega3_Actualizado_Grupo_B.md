@@ -1,31 +1,13 @@
-# Entregable 3 – Vista lógica · Visión Integral 360
-
-**Universidad Técnica Particular de Loja · Ingeniería en Ciencias de la Computación**  
-**Arquitectura de Software · Grupo B · Semana 4 (26/10 al 01/11/2026)**  
-**Reto:** Visión Integral 360 · COAC Padre Julián Lorente  
-**Integrantes y roles:** Diana Bermeo (arquitecta líder); Camilo Fierro (documentador); Steven Vega (revisor); Lady Robalino (integrante del equipo, rol específico sin indicar); Antonella del Cisne Parra Carrion (responsable de la bitácora de IA).  
-**Docente:** Mgtr. Jackson Masache  
-**Estado:** versión académica revisada conforme a las observaciones de las Entregas 1 y 2; revisión final del Grupo B pendiente.
-
-**Base documental.** TDR, Anexo B; DAS de Entregas 1 y 2 corregido (cinco objetivos, RF-01 a RF-08, RNF-01 a RNF-06, supuestos SUP-03 y SUP-05); catálogo de ocho casos vigentes (CU-01, CU-02, CU-04, CU-05, CU-08, CU-09, CU-10, CU-11). Los códigos, nombres, cifras, fechas y reglas de los escenarios son **datos ficticios de prueba**, no hechos de la cooperativa. No se inventan accesos ni reglas institucionales aprobadas.
-
 ## 3.1. Escenarios de dominio y extracción de sustantivos
-
-En las frases siguientes se **subrayan los sustantivos** para identificar candidatos y se destacan en **negrita algunos verbos** que ayudan a reconocer relaciones u operaciones. No todos los sustantivos terminan siendo clases.
-
 ### E-01 – CU-01 · Consultar panorama de proyectos
 
 El 30/10/2026, el rol de <u>Jefatura de Desarrollo de Software</u> **solicita** el <u>panorama de proyectos</u> del <u>período</u> octubre de 2026.
 
-
 El <u>proyecto</u> ficticio P-001, «Canal web institucional», **aparece** en estado «En ejecución», con un <u>responsable</u> identificado y un <u>hito</u> H-01 previsto para el 28/10/2026.
-
 
 El <u>indicador</u> «Avance del proyecto» tiene un <u>valor de indicador</u> de 60 % (dato de prueba, sin implicar una fórmula institucional aprobada). Se **muestra** la <u>fuente de información</u> Redmine y su <u>fecha de actualización</u>: 29/10/2026.
 
-
 El rol directivo **consulta** el detalle y la fecha de corte; el sistema **conserva** los datos sin modificarlos.
-
 
 **Trazabilidad:** CU-01, que **incluye** CU-04; RF-04, RF-05, RF-07 y RF-08; RNF-02, RNF-04 y RNF-06. Se consulta información autorizada sin alterarla.
 
@@ -33,15 +15,11 @@ El rol directivo **consulta** el detalle y la fecha de corte; el sistema **conse
 
 El 30/10/2026 a las 08:00, el <u>temporizador</u> (actor `<<tiempo>>`) **inicia** una <u>sincronización</u> de las <u>fuentes de información</u> Redmine y Excel online.
 
-
 Redmine **entrega** el <u>proyecto</u> ficticio P-001, la <u>iniciativa</u> I-003 y el <u>requerimiento</u> R-015; Excel **entrega** un <u>seguimiento semanal</u> del 29/10/2026 relacionado con el mismo proyecto.
-
 
 Una <u>referencia de origen</u> del Excel **coincide** con P-001 bajo una <u>regla de correspondencia</u> asumida únicamente para la prueba; otra referencia solo comparte un nombre parecido y resulta ambigua.
 
-
 El sistema **conserva** el origen y la fecha de los registros válidos, no **relaciona** la referencia ambigua y **registra** la observación. El <u>resultado por fuente</u> **indica** que ambas respondieron; la <u>sincronización</u> termina como exitosa con observaciones. Al alcanzar el <u>punto de extensión</u> «información válida consolidada», CU-10 puede **extender** CU-09 si la evaluación está habilitada y la versión de los datos no se ha evaluado con las mismas reglas; no se ejecuta de forma incondicional.
-
 
 **Trazabilidad:** CU-09; RF-01, RF-02, RF-03 y RF-08; RNF-01, RNF-03 y RNF-05; FA-03 (correspondencia ambigua) y FA-05 (estructura incompatible de Excel). Las claves y columnas reales siguen sin validarse.
 
@@ -49,19 +27,15 @@ El sistema **conserva** el origen y la fecha de los registros válidos, no **rel
 
 El 30/10/2026 a las 09:00 se **evalúa** el <u>proyecto</u> de prueba P-001, que **conserva** un <u>hito</u> H-01 con fecha de compromiso 28/10/2026 y estado «Pendiente».
 
-
 Para esta prueba se utiliza una <u>regla de alerta</u> de ejemplo: «Si la fecha de compromiso ya pasó y el hito sigue pendiente, se identifica un retraso». No representa un umbral institucional aprobado.
-
 
 La primera evaluación **registra** la <u>alerta</u> A-001 asociada a P-001 y a esa <u>regla de alerta</u>, con fecha y estado «Activa».
 
-
 En una segunda evaluación de prueba, el sistema **encuentra** la misma condición activa y no crea otra <u>alerta</u>. Si se repite exactamente la versión de datos con las mismas reglas, **evita** evaluar de nuevo; si faltan datos verificables, tampoco crea alertas nuevas. CU-10 puede iniciarse por el actor <u>temporizador</u> o al cumplirse la extensión de CU-09.
-
 
 **Trazabilidad:** CU-10; RF-06 y RF-08; RNF-03. El cálculo de KPI de RF-05 pertenece a CU-04; CU-10 usa información ya consolidada. Las alertas no se duplican por proyecto y condición activa.
 
-### E-04 – CU-02 · Consultar seguimiento de un proyecto (casos fusionados)
+### E-04 – CU-02 · Consultar seguimiento de un proyecto 
 
 El 30/10/2026, el <u>responsable de proyecto</u> **selecciona** el <u>proyecto</u> ficticio P-001 y **consulta** su <u>seguimiento</u> autorizado. El sistema **presenta** el <u>estado de proyecto</u>, el <u>responsable asignado</u> y las <u>fechas de actualización</u> disponibles.
 
@@ -70,8 +44,6 @@ A continuación, el responsable **revisa** la <u>iniciativa</u> I-003 y el <u>re
 **Trazabilidad:** CU-02 vigente; RF-01, RF-02, RF-03, RF-04, RF-07 y RF-08. Los antiguos CU-03 (iniciativas/requerimientos), CU-06 (hitos/plazos) y CU-07 (seguimiento semanal) permanecen como variantes de consulta dentro de CU-02 y no son casos activos independientes. Los ejemplos son datos ficticios de prueba.
 
 ## 3.2. Cinco preguntas y lista de candidatos
-
-**Nota metodológica:** la consigna exige las cinco preguntas del docente, pero no se ha podido comprobar la formulación literal de esas preguntas con la presentación de la Clase 4. Estas cinco preguntas son **un filtro metodológico operativo pendiente de contraste con la formulación literal de la clase**. Se debe comprobar y ajustar su formulación con la presentación antes de registrar la entrega como definitiva.
 
 **P1:** ¿Es un concepto relevante para el negocio?  
 **P2:** ¿Tiene identidad o seguimiento independiente?  
@@ -112,14 +84,9 @@ A continuación, el responsable **revisa** la <u>iniciativa</u> I-003 y el <u>re
 | Tabla de base de datos (-) | No | No | No | No | No | **Descartar:** Persistencia técnica, no concepto de negocio. |
 | GitLab / SonarQube (Contexto DAS) | No | No | No | No | No | **Descartar:** No se incorporan como fuentes directas en esta etapa. |
 
-
 ## 3.3. Diagrama de clases del dominio
 
-El diagrama utiliza **asociaciones** entre entidades del negocio y **composición** únicamente entre `Sincronizacion` y `ResultadoFuente`, porque cada resultado por fuente pertenece a una ejecución. No se fuerza agregación ni generalización sin evidencia. Las asociaciones propuestas `Proyecto–Iniciativa`, `Proyecto–Requerimiento` y `Proyecto–SeguimientoSemanal` permiten **0..1 proyectos por elemento**: la pertenencia todavía debe validarse, por lo que no se afirma obligatoriedad institucional.
-
-![Diagrama de clases del dominio](diagramas/vision360-vista-logica.svg)
-
-**Fuente versionable en Mermaid:** `diagramas/vision360-vista-logica.mmd`. El diagrama adjunto representa el mismo conjunto de 13 clases y relaciones, incluida la composición de resultados por fuente. La generación de PNG/SVG no cambia la definición de dominio.
+**Fuente versionable en Mermaid:** `diagramas/vision360-vista-logica.mmd`. 
 
 ```mermaid
 classDiagram
@@ -230,7 +197,6 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 
 - Se permite provisionalmente que una `Iniciativa`, `Requerimiento` o `SeguimientoSemanal` no tenga un `Proyecto` confirmado (0..1), para no forzar la correspondencia de datos ambiguos; la jerarquía institucional **no ha sido validada**. Una `ReferenciaOrigen` confirmada debe vincularse con **exactamente uno** de los tres tipos `Proyecto`, `Iniciativa` o `Requerimiento`, nunca con varios a la vez; una referencia ambigua permanece sin asociación confirmada.
 
-
 ## 3.4. Diccionario de clases
 
 ### 3.4.1. Proyecto
@@ -245,7 +211,6 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `responsable` | `ResponsableAsignado` | Referente de seguimiento; permisos y estructura organizativa por confirmar. |
 | `fechaFinPrevista` | `FechaOpcional` | Fecha comprometida si se conoce; no se presume para todos los proyectos. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Pueden existir varias referencias de origen para un mismo proyecto confirmado.
@@ -253,8 +218,6 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 - El proyecto consultado debe respetar las autorizaciones del usuario (CU-01).
 
 - No se presume que el código ilustrativo P-001 exista en la cooperativa.
-
-
 
 ### 3.4.2. Iniciativa
 
@@ -266,14 +229,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `nombre` | `NombreIniciativa` | Denominación de la iniciativa. |
 | `estado` | `EstadoIniciativa` | Situación reportada. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Su asociación a un proyecto es opcional en este modelo (0..1), hasta validar la estructura real.
 
 - Puede proceder de Redmine y/o Excel y tener referencias de origen.
-
-
 
 ### 3.4.3. Requerimiento
 
@@ -286,14 +246,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `estado` | `EstadoRequerimiento` | Situación del requerimiento. |
 | `prioridad` | `Prioridad` | Nivel de importancia, si lo proporciona la fuente. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Se propone una asociación opcional (0..1) a proyecto; la relación exacta entre proyecto, iniciativa y requerimiento necesita validación.
 
 - No relacionar requerimientos ambiguos por coincidencia de texto.
-
-
 
 ### 3.4.4. Hito
 
@@ -307,14 +264,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `fechaCumplimiento` | `FechaOpcional` | Fecha real de finalización, cuando exista. |
 | `estado` | `EstadoHito` | Estado conocido del compromiso. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Para detectar retrasos se debe disponer de una fecha y un estado verificables.
 
 - La regla ilustrativa de vencimiento requiere validación institucional.
-
-
 
 ### 3.4.5. SeguimientoSemanal
 
@@ -326,14 +280,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `observacion` | `TextoSeguimiento` | Información relevante registrada en reuniones. |
 | `fechaRegistro` | `FechaHora` | Momento registrado para ese seguimiento. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Los aportes son semanales según el contexto del DAS; la frecuencia del dashboard no está aprobada.
 
 - Debe identificarse la fuente y su fecha; no reemplazar sin control la última versión válida. Cuando la correspondencia con un proyecto sea ambigua, se registra el caso sin asociarlo automáticamente (CU-09, FA-03).
-
-
 
 ### 3.4.6. Indicador
 
@@ -347,14 +298,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `formulaDocumentada` | `ReglaCalculoOpcional` | Fórmula de negocio cuando esté documentada y validada; puede estar pendiente. |
 | `unidad` | `UnidadMedida` | Ejemplo: porcentaje o cantidad. |
 
-
 **Reglas de negocio / restricciones:**
 
 - La fórmula debe ser documentada antes de su aplicación.
 
 - Si no existe información suficiente, el indicador se presenta como «No disponible» (CU-01).
-
-
 
 ### 3.4.7. ValorIndicador
 
@@ -367,14 +315,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `fechaCalculo` | `FechaHora` | Momento en el que se obtuvo. |
 | `estadoCalculo` | `EstadoCalculo` | Calculado o no disponible. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Una medición pertenece a un proyecto y a una definición de indicador.
 
 - Un valor no disponible no se sustituye por una cifra inventada.
-
-
 
 ### 3.4.8. ReglaAlerta
 
@@ -387,7 +332,6 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `criterio` | `CondicionNegocio` | Condición evaluable, pendiente de aprobación. |
 | `estado` | `VigenciaRegla` | Vigente o no vigente. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Los umbrales específicos requieren aprobación por la cooperativa.
@@ -395,8 +339,6 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 - La evaluación de reglas puede terminar sin emitir una alerta (CU-10).
 
 - La repetición de una misma versión consolidada con el mismo conjunto de reglas no debe provocar una evaluación duplicada; la forma de registrar esa evidencia se detallará en la vista de procesos.
-
-
 
 ### 3.4.9. Alerta
 
@@ -409,14 +351,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `fechaGeneracion` | `FechaHora` | Momento de detección. |
 | `estado` | `EstadoAlerta` | Situación activa o resuelta. |
 
-
 **Reglas de negocio / restricciones:**
 
 - No se permite más de una alerta activa para el mismo proyecto y la misma condición (CU-10).
 
 - Si los datos son insuficientes no se genera una alerta nueva.
-
-
 
 ### 3.4.10. FuenteInformacion
 
@@ -428,14 +367,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `tipo` | `TipoFuente` | Categoría de origen, no mecanismo técnico. |
 | `ultimaActualizacionConocida` | `FechaHoraOpcional` | Última actualización reportada o conocida. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Las fuentes principales actuales son Redmine y Excel online.
 
 - Representa el concepto «origen de información»; no es una clase del software Redmine o Excel.
-
-
 
 ### 3.4.11. ReferenciaOrigen
 
@@ -447,14 +383,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `fechaActualizacionEnFuente` | `FechaHoraOpcional` | Marca temporal informada por la fuente cuando esté disponible. |
 | `estadoCorrespondencia` | `EstadoCorrespondencia` | Confirmada, pendiente o ambigua. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Una referencia confirmada se vincula como máximo a un elemento del dominio (proyecto, iniciativa o requerimiento).
 
 - Una referencia ambigua puede quedar sin asociación hasta su revisión (CU-09, FA-03).
-
-
 
 ### 3.4.12. Sincronizacion
 
@@ -467,7 +400,6 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `resultado` | `ResultadoSincronizacion` | Exitosa, parcial o fallida. |
 | `observacion` | `TextoOpcional` | Detalle de incidencias o registros ambiguos. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Si fallan ambas fuentes no se actualizan datos y no se habilita el punto de extensión de CU-10. Si hay datos nuevos válidos, la evaluación puede extender CU-09 bajo la condición documentada.
@@ -475,8 +407,6 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 - Si cambia la estructura del Excel y faltan columnas obligatorias, los registros incompatibles se observan y se conserva la versión válida anterior.
 
 - Si una fuente falla, se conserva la última versión válida y se informa la actualización parcial.
-
-
 
 ### 3.4.13. ResultadoFuente
 
@@ -489,14 +419,11 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | `cantidadValidos` | `CantidadRegistros` | Cantidad de registros que pudieron procesarse. |
 | `cantidadObservados` | `CantidadRegistros` | Cantidad de registros con observaciones. |
 
-
 **Reglas de negocio / restricciones:**
 
 - Debe pertenecer a una y solo una sincronización.
 
 - Permite identificar qué fuente respondió o falló (CU-09 y CU-11).
-
-
 
 ## 3.5. Trazabilidad y decisiones pendientes
 
@@ -508,14 +435,7 @@ FuenteInformacion "1" -- "0..*" ResultadoFuente : fue consultada
 | CU-10; RF-06, RF-08 | Proyecto, Hito, ReglaAlerta, Alerta, ReferenciaOrigen |
 | CU-11 | Sincronizacion, ResultadoFuente, ReferenciaOrigen |
 
-
 **Pendientes explícitos para la revisión:** confirmar las cinco preguntas literales de clase; confirmar jerarquía Proyecto–Iniciativa–Requerimiento y unicidad del destino de cada ReferenciaOrigen; confirmar correspondencia de seguimientos semanales con proyectos, campos de origen, reglas de correspondencia, definición de avance, umbrales y cardinalidad real de registros semanales. No crear una clase de permisos ni asignar reglas de acceso concretas mientras la cooperativa no las confirme.
 
 **Alcance del modelo:** no incluye controladores, interfaces web, tablas SQL, APIs, conectores, GitLab ni SonarQube como fuentes directas. Los roles humanos y el temporizador siguen identificados como actores, no como clases del dominio.
 
-
-## 3.6. Integración documental y control de versión
-
-Esta sección se incorpora a `das.md` después de las Entregas 1 y 2 corregidas; no sustituye ni reenumera los cinco objetivos, los ocho RF, los seis RNF ni el catálogo vigente. El archivo Mermaid debe conservarse en `diagramas/vision360-vista-logica.mmd` y la representación SVG/PNG en la misma carpeta.
-
-La utilización de IA para proponer o revisar clases, atributos y multiplicidades debe registrarse de forma verificable en `bitacora-ia.md`, con fecha real, integrante, consulta, evidencia de contraste con el DAS, decisiones efectivamente adoptadas y un commit por entrada. El cierre S4 se completa con cifras reales. La aprobación grupal y los commits no se presumen realizados.
