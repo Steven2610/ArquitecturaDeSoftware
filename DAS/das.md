@@ -79,9 +79,107 @@ Los cargos y permisos institucionales no se atribuyen a personas concretas sin c
 
 ---
 
-## 5. Alcance de la solución
+## 5. Vista de desarrollo
 
-### 5.1. Dentro del prototipo
+### 5.1 Diagrama de paquetes
+
+![alt text](vision360-paquetes.png)
+
+Archivo fuente: `docs/desarrollo/vision360-paquetes.puml`. Imagen: `docs/desarrollo/vision360-paquetes.png`.
+
+| Paquete | Estereotipo | Piezas que contiene |
+|---|---|---|
+| Presentación web | «presentación» | VistaPanorama, PanelAdministracion |
+| Seguimiento | «dominio» | ControlConsultaPanorama, ControlIndicadoresAvance |
+| Núcleo de proyectos | «dominio» | Proyecto, Iniciativa, Requerimiento, Hito, Avance, FuenteInformacion, RegistroSincronizacion |
+| Alertas | «dominio» | ControlAlertasDesviaciones, ReglaAlerta, Alerta, RegistroEvaluacion |
+| Integración de fuentes | «integración» | ControlIntegracion, AdaptadorRedmine, AdaptadorExcel |
+| Seguridad y permisos | «utilitario» | PerfilUsuario |
+| Registro de errores | «utilitario» | RegistroErrores |
+| Persistencia | «plataforma» | BaseDatosRelacional |
+| Tareas programadas | «plataforma» | Planificador |
+
+### 5.2 Tabla de dependencias
+
+| # | Origen | Destino | Por qué existe |
+|---|---|---|---|
+| D1 | Presentación web | Seguimiento | La vista del panorama llama al control de consulta (CU-01). |
+| D2 | Presentación web | Integración de fuentes | El panel de administración solicita la sincronización manual (CU-09, FA-04). |
+| D3 | Seguimiento | Núcleo de proyectos | El control recupera proyectos, avances y fuentes para presentar el panorama. |
+| D4 | Seguimiento | Alertas | El panorama muestra las alertas disponibles al consultar indicadores (CU-04). |
+| D5 | Seguimiento | Seguridad y permisos | Antes de mostrar datos se verifican los permisos del perfil (CU-01, RF-07). |
+| D6 | Alertas | Núcleo de proyectos | La evaluación de desviaciones necesita proyectos e hitos (CU-10). |
+| D7 | Integración de fuentes | Núcleo de proyectos | La sincronización guarda los registros consolidados de Redmine y Excel (CU-09). |
+| D8 | Integración de fuentes | Alertas | Al terminar una sincronización válida se evalúan alertas (CU-09 «include» CU-10). |
+| D9 | Núcleo de proyectos | Persistencia | Los proyectos y avances se guardan y consultan en la base de datos. |
+| D10 | Integración de fuentes | Registro de errores | Un fallo de Redmine o Excel debe quedar registrado (CU-09 FA-01, FA-02). |
+| D11 | Alertas | Registro de errores | Si la evaluación no puede completarse, la causa queda registrada (CU-10 E-01). |
+
+Dentro del paquete Seguimiento también existe la relación «include» de CU-01 a CU-04.
+
+**Verificación de ciclos.** Ningún paquete recibe una flecha que regrese a su origen por otro camino. Las cadenas son Presentación → Seguimiento → Alertas → Núcleo, y Presentación → Integración → Alertas → Núcleo. Seguimiento y Alertas no dependen entre sí en sentido contrario, y Alertas no depende de Seguimiento. No hay ciclos.
+
+**Regla de dirección.** Ninguna flecha sale de Persistencia, Seguridad o Registro de errores hacia un dominio. Los dominios sí dependen de la plataforma y de los utilitarios.
+
+### 5.3 Tabla de plataformas
+
+| Necesidad | Plataforma elegida | Justificación |
+|---|---|---|
+| Lenguaje y framework del backend | Python con Django | Trae ORM, autenticación y permisos por perfil (RF-07) y un panel de administración (CU-11). Reduce código propio en seguridad. *Por validar con el equipo.* |
+| Base de datos | PostgreSQL | Relaciona proyectos, iniciativas y requerimientos con integridad referencial. Permite restricciones únicas para evitar alertas activas duplicadas (CU-10, fiabilidad). |
+| Tareas programadas y asíncronas | Celery con Celery Beat y Redis | Beat ejecuta la sincronización y la evaluación programadas (temporizador). Celery procesa la sincronización manual sin bloquear la interfaz (200 registros en menos de 5 minutos). |
+| Cliente web | Plantillas del servidor (Django templates) con Bootstrap | El proyecto requiere un panel web, no una app móvil. Evita un frontend separado y reduce el tiempo de desarrollo. |
+| Acceso a Redmine | API REST de Redmine con clave en variables de entorno | Redmine expone su API REST. La clave no se escribe en el código (CU-09, seguridad). |
+| Acceso a Excel online | Microsoft Graph API | Es el mecanismo estándar para leer archivos de Excel en la nube. *Pendiente de validar, como indica el DAS.* |
+| Registro de errores | Sistema de logging de Django, más la tabla RegistroSincronizacion | Cubre la trazabilidad de fallos y resultados exigida en CU-09 (fiabilidad). |
+
+### 5.4 Chequeo con la vista de procesos (Taller 5)
+
+| Control o adaptador (robustez) | Caso de uso | Paquete donde queda | Estado |
+|---|---|---|---|
+| Vista de panorama de proyectos | CU-01 | Presentación web | Correcto |
+| Panel de administración | CU-09 | Presentación web | Correcto |
+| Control de consulta de panorama | CU-01 | Seguimiento | Correcto |
+| Control de indicadores de avance | CU-04 | Seguimiento | Correcto |
+| Perfil de usuario | CU-01 | Seguridad y permisos | Correcto |
+| Control de integración | CU-09 | Integración de fuentes | Correcto |
+| Adaptador Redmine | CU-09 | Integración de fuentes | Correcto |
+| Adaptador Excel | CU-09 | Integración de fuentes | Correcto |
+| Control de alertas por desviaciones | CU-10 | Alertas | Correcto |
+| Proyecto, Avance, Fuente de información, Registro de sincronización | CU-01, CU-04, CU-09 | Núcleo de proyectos | Correcto |
+| Hito, Regla de alerta, Alerta, Registro de evaluación | CU-10 | Núcleo (Hito) y Alertas (resto) | Correcto |
+
+No existe ningún control por herramienta (como ControlRedmine). Los controles son por caso de uso y las herramientas se acceden solo mediante adaptadores.
+
+### 5.5 Estructura de carpetas del repositorio
+
+```
+docs/
+  desarrollo/
+    vision360-paquetes.puml
+    vision360-paquetes.png
+    seccion5-vista-desarrollo.md
+src/
+  presentacion/
+  seguimiento/
+  nucleo/
+  alertas/
+  integracion/
+  utilitarios/
+    seguridad/
+    registro/
+  plataforma/
+    persistencia/
+    tareas/
+```
+
+Cada carpeta corresponde a un paquete del diagrama. No se usan carpetas por tipo técnico (controllers, models).
+
+---
+
+## 6. Alcance de la solución
+
+### 6.1. Dentro del prototipo
 
 * Consulta de dos fuentes identificadas: Redmine y el Excel online compartido; se utilizarán copias simuladas si no existe autorización de datos reales.
 * Normalización de datos y asociación controlada entre proyectos, iniciativas y requerimientos.
@@ -89,7 +187,7 @@ Los cargos y permisos institucionales no se atribuyen a personas concretas sin c
 * Cálculo automático de un conjunto inicial de KPI acordado con los usuarios o, para la prueba, definido con datos simulados.
 * Alertas sobre atrasos o datos inconsistentes, según reglas explícitas; vistas diferenciadas para responsables de proyectos y alta dirección.
 
-### 5.2. Fuera de alcance
+### 6.2. Fuera de alcance
 
 * Reemplazar o administrar íntegramente Redmine o el Excel compartido; alterar registros originales mediante la aplicación.
 * Construir integraciones directas nuevas con GitLab y SonarQube; su conexión con Redmine es contexto informado y todavía debe verificarse.
@@ -98,7 +196,7 @@ Los cargos y permisos institucionales no se atribuyen a personas concretas sin c
 
 ---
 
-### 5.3. Fuentes de datos
+### 6.3. Fuentes de datos
 
 | Fuente | Papel en el proyecto | Mecanismo previsto / condición |
 | :--- | :--- | :--- |
@@ -108,9 +206,9 @@ Los cargos y permisos institucionales no se atribuyen a personas concretas sin c
 
 ---
 
-## 6. Requisitos iniciales
+## 7. Requisitos iniciales
 
-### 6.1. Requisitos funcionales
+### 7.1. Requisitos funcionales
 
 | Código | Requisito inicial |
 | :--- | :--- |
@@ -123,7 +221,7 @@ Los cargos y permisos institucionales no se atribuyen a personas concretas sin c
 | RF-07 | Ofrecer vistas y consultas adecuadas a los perfiles de responsable de proyecto y alta dirección. |
 | RF-08 | Mostrar el origen y la última fecha de actualización de los datos consultados. |
 
-### 6.2. Requisitos no funcionales preliminares
+### 7.2. Requisitos no funcionales preliminares
 
 | Código / atributo | Requisito inicial y criterio de evaluación propuesto |
 | :--- | :--- |
@@ -138,9 +236,9 @@ Estas metas son hipótesis del equipo, no compromisos pactados con la cooperativ
 
 ---
 
-## 7. Supuestos, restricciones y respuestas a preguntas guía
+## 8. Supuestos, restricciones y respuestas a preguntas guía
 
-### 7.1. Supuestos por validar
+### 8.1. Supuestos por validar
 
 | ID | Supuesto / pendiente de confirmación |
 | :--- | :--- |
@@ -152,14 +250,14 @@ Estas metas son hipótesis del equipo, no compromisos pactados con la cooperativ
 | SUP-06 | La actualización del Excel es semanal; la frecuencia objetivo del dashboard y Redmine deberá acordarse. |
 | SUP-07 | La alta dirección y los responsables de proyecto tendrán perfiles de consulta diferenciados; permisos exactos por definir. |
 
-### 7.2. Restricciones
+### 8.2. Restricciones
 
 * El sistema debe respetar las autorizaciones para acceder a información de la cooperativa.
 * El prototipo no estará destinado a producción y puede emplear fuentes simuladas.
 * El desarrollo deberá ajustarse a las semanas y entregables académicos definidos por el TDR.
 * La tecnología concreta no queda elegida definitivamente en esta fase; deberá justificarse frente a los atributos de calidad.
 
-### 7.3. Respuestas iniciales a las preguntas guía del Anexo B
+### 8.3. Respuestas iniciales a las preguntas guía del Anexo B
 
 | Pregunta del TDR | Respuesta inicial del Grupo B |
 | :--- | :--- |
@@ -170,7 +268,7 @@ Estas metas son hipótesis del equipo, no compromisos pactados con la cooperativ
 
 ---
 
-## 8. Visión inicial de la solución
+## 9. Visión inicial de la solución
 
 Se propone una página web independiente que consulte Redmine y el Excel compartido a través de conectores de lectura, transforme los registros a un esquema común y exponga indicadores y alertas en un dashboard para dos perfiles de consulta. Las conexiones desde GitLab y SonarQube hacia Redmine se muestran como información reportada que requiere validación técnica.
 
@@ -178,7 +276,7 @@ Se propone una página web independiente que consulte Redmine y el Excel compart
 
 *Figura 1. Diagrama conceptual de contexto y flujo de información del Reto “Visión Integral 360”.*
 
-### 8.1. Tecnologías candidatas (no aprobadas)
+### 9.1. Tecnologías candidatas (no aprobadas)
 
 | Capa / componente | Alternativas a estudiar | Criterio para decidir |
 | :--- | :--- | :--- |
@@ -192,7 +290,7 @@ Este boceto no equivale a seleccionar microservicios, SOA o arquitectura en capa
 
 ---
 
-## 9. Plan de trabajo y responsables (semanas 3–16)
+## 10. Plan de trabajo y responsables (semanas 3–16)
 
 El cronograma sigue las semanas del TDR. La responsabilidad primaria se asigna según los roles académicos, pero todo el grupo participa en las revisiones y defensas del diseño.
 
@@ -217,7 +315,7 @@ El cronograma sigue las semanas del TDR. La responsabilidad primaria se asigna s
 
 ---
 
-## 10. Anexos
+## 11. Anexos
 
 ### Anexo 1. Repositorio Git
 

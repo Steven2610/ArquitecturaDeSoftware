@@ -1,0 +1,75 @@
+@startuml vision360-paquetes
+title Vista de desarrollo – Visión Integral 360 (diagrama de paquetes)
+skinparam packageStyle rectangle
+
+package "Presentación web" as PRES <<presentación>> {
+  component "VistaPanorama" as VP
+  component "PanelAdministracion" as PA
+}
+
+package "Seguimiento" as SEG <<dominio>> {
+  component "ControlConsultaPanorama" as CCP
+  component "ControlIndicadoresAvance" as CIA
+  CCP ..> CIA : <<include>> CU-01 → CU-04
+}
+
+package "Núcleo de proyectos" as NUC <<dominio>> {
+  component "Proyecto" as PRO
+  component "Iniciativa" as INI
+  component "Requerimiento" as REQ
+  component "Hito" as HIT
+  component "Avance" as AVA
+  component "FuenteInformacion" as FUE
+  component "RegistroSincronizacion" as RSI
+}
+
+package "Alertas" as ALE <<dominio>> {
+  component "ControlAlertasDesviaciones" as CAD
+  component "ReglaAlerta" as RAL
+  component "Alerta" as ALT
+  component "RegistroEvaluacion" as REV
+}
+
+package "Integración de fuentes" as INT <<integración>> {
+  component "ControlIntegracion" as CIN
+  component "AdaptadorRedmine" as ADR
+  component "AdaptadorExcel" as ADE
+}
+
+package "Seguridad y permisos" as SEC <<utilitario>> {
+  component "PerfilUsuario" as PUS
+}
+
+package "Registro de errores" as LOG <<utilitario>> {
+  component "RegistroErrores" as ERR
+}
+
+package "Persistencia" as PER <<plataforma>> {
+  component "BaseDatosRelacional" as BDD
+}
+
+package "Tareas programadas" as TAR <<plataforma>> {
+  component "Planificador" as PLA
+}
+
+PRES ..> SEG : consultar panorama
+PRES ..> INT : sincronización manual (CU-09 FA-04)
+SEG ..> NUC : recuperar proyectos y avances
+SEG ..> ALE : mostrar alertas (CU-04)
+SEG ..> SEC : verificar permisos (CU-01)
+ALE ..> NUC : evaluar proyectos e hitos
+INT ..> NUC : consolidar Redmine y Excel
+INT ..> ALE : <<include>> CU-09 → CU-10
+NUC ..> PER : persistir
+INT ..> LOG : registrar problemas de fuente
+ALE ..> LOG : registrar causa de fallo
+
+note as N1
+Temporizador externo (actor) invoca ControlIntegracion y
+ControlAlertasDesviaciones. Su configuración vive en Planificador;
+no genera una dependencia de código, por eso no tiene flecha.
+Redmine y Excel online son sistemas externos: se acceden solo
+por los adaptadores.
+end note
+
+@enduml

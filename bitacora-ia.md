@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-
 # BITACORAS IA
-=======
+
 ### IA-01 · 25/10/2026 · S3 – Foro sobre trabajo colaborativo con Git (Opción C)
 
 - **Herramienta:** ChatGPT – GPT-6.
@@ -21,15 +19,15 @@ Fuente: https://git-scm.com/docs/git-merge
 
 - **¿Error de la IA?:** Omisión. La IA mencionó la resolución de conflictos, pero no explicó cómo resolverlos ni aclaró suficientemente que trabajar con ramas no evita todos los conflictos.
 
+---
 
- 
 ### IA-02 · 26/10/2026 · S3 – Actores y casos de uso
 
 - **Integrante:** Diana Bermeo.
 - **Herramienta:** ChatGPT – GPT-6.
 - **Objetivo:** Identificar los actores y organizar los casos de uso principales de Visión Integral 360.
 
-- **Prompt:** (Resumen de la consulta) Solicité orientación para desarrollar los casos de uso de Visión Integral 360 tomando como referencia el ejercicio CampusEats. Posteriormente pedí mantener la información de la primera versión del DAS, diferenciando los actores  de los sistemas externos.
+- **Prompt:** (Resumen de la consulta) Solicité orientación para desarrollar los casos de uso de Visión Integral 360 tomando como referencia el ejercicio CampusEats. Posteriormente pedí mantener la información de la primera versión del DAS, diferenciando los actores de los sistemas externos.
 
 - **Respuesta (resumen):** La IA identificó usuarios que consultarían el dashboard y sistemas externos como Redmine y Excel online. También propuso un catálogo de 11 casos de uso relacionados con proyectos, indicadores, alertas y sincronización de información.
 
@@ -57,18 +55,14 @@ Fuente: https://git-scm.com/docs/git-merge
 
 - **Qué usamos:** La estructura del diagrama en PlantUML, los actores y casos de uso previamente definidos y la relación `«include»` entre CU-01 y CU-04.
 
+- **Qué descartamos y por qué:** Se descartó la relación «extend» propuesta inicialmente entre CU-10 y CU-09, porque en nuestra especificación establecimos que toda sincronización completada con información válida debe ejecutar la evaluación de alertas. Por eso utilizamos «include», aunque la evaluación no siempre genere alertas nuevas.
 
-- **Qué descartamos y por qué:** Se descartó la relación   «extend» propuesta inicialmente entre CU-10 y CU-09,  porque en nuestra especificación establecimos que toda
-  sincronización completada con información válida debe   ejecutar la evaluación de alertas. Por eso utilizamos
-  «include», aunque la evaluación no siempre genere  alertas nuevas.
+- **Verificación:** Comparamos las relaciones del diagrama PlantUML con el catálogo de casos de uso y las especificaciones de CU-09 y CU-10. Corregimos la relación para que el diagrama represente el mismo comportamiento descrito en el DAS.
 
-- **Verificación:** Comparamos las relaciones del diagrama   PlantUML con el catálogo de casos de uso y las  especificaciones de CU-09 y CU-10. Corregimos la
-  relación para que el diagrama represente el mismo   comportamiento descrito en el DAS.
-
-- **¿Error de la IA?:** Omisión. La IA no mantuvo   inicialmente la coherencia entre la relación UML
-  propuesta y el comportamiento definido posteriormente   en las especificaciones.
+- **¿Error de la IA?:** Omisión. La IA no mantuvo inicialmente la coherencia entre la relación UML propuesta y el comportamiento definido posteriormente en las especificaciones.
 
 - **Decisión del grupo:** Utilizar «include» entre CU-09 y CU-10, manteniendo la evaluación de alertas como parte del resultado de una sincronización válida.
+
 ---
 
 ### IA-04 · 26/10/2026 · S3 – Revisión de especificaciones
@@ -113,11 +107,9 @@ Fuente: https://git-scm.com/docs/git-merge
 
 - **Decisión del grupo:** Mantener los cinco objetivos originales y utilizar la matriz para demostrar cómo contribuyen los casos de uso, diferenciando las funciones del sistema de las actividades propias del DAS.
 
-  
 - **Decisión:** Mantener la organización actual con ramas individuales y Pull Requests. Cuando comience el desarrollo del código, considerar el uso de ramas por funcionalidades y revisar los cambios antes de integrarlos.
 
-
-
+---
 
 ### IA-06 · 26/10/2026 · S3 – Preparación del PDF de entrega del DAS
 
@@ -127,7 +119,7 @@ Fuente: https://git-scm.com/docs/git-merge
 
 - **Prompt:** (Resumen de la consulta) Consulté cómo preparar un documento PDF a partir del archivo Markdown del DAS, conservando la información desarrollada e incorporando una portada institucional, el diagrama UML, las tablas y las especificaciones de los casos de uso.
 
-- **Respuesta (resumen):** La IA ayudó a estructurar el documento en formato PDF, incluyendo una portada con los integrantes  y los cinco apartados solicitados para la sección 2 del DAS. 
+- **Respuesta (resumen):** La IA ayudó a estructurar el documento en formato PDF, incluyendo una portada con los integrantes y los cinco apartados solicitados para la sección 2 del DAS.
 
 - **Qué usamos:** La organización del documento PDF, el diseño de la portada, la presentación de las tablas y la incorporación del diagrama UML para facilitar la lectura del trabajo.
 
@@ -138,4 +130,27 @@ Fuente: https://git-scm.com/docs/git-merge
 - **¿Error de la IA?:** Omisión. En la primera conversión no se incorporó correctamente la imagen del diagrama UML. Se detectó el problema y se corrigió antes de generar la versión final.
 
 - **Decisión del grupo:** Se preparó el documento PDF conservando el contenido del DAS elaborado anteriormente, con una presentación uniforme y los apartados requeridos. La versión queda pendiente de revisión y aprobación final del equipo para su entrega en Canvas.
->>>>>>> develop
+
+---
+
+### IA-07 · 16/11/2026 · S6 – Vista de desarrollo (sección 5 del DAS)
+
+- **Integrante:** Lady Robalino.
+- **Herramienta:** Claude (chat).
+- **Objetivo:** Revisar la contrucción de la vista de desarrollo del reto: paquetes con estereotipo, dependencias justificadas, tabla de plataformas, chequeo con las controles y adaptadores del Taller 5, y estructura de carpetas del repositorio.
+
+- **Prompt:** (Revisa los archivos compartidos) Compartí el DAS, los diagramas de casos de uso, las robustez y de secuencia de CU-01, CU-09 y CU-10, el diagrama de clases y la estructura del repositorio.
+
+- **Respuesta (resumen):** Propuso nueve paquetes con estereotipo (presentación, tres paquetes de dominio, integración, dos utilitarios y dos plataformas), once dependencias con su justificación, una tabla de plataformas como propuesta provisional, el chequeo de cada control y adaptador con su paquete, y una estructura de carpetas que repite los paquetes. 
+
+- **Qué usamos:** Los paquetes agrupados por función; la regla de dirección de las dependencias (los dominios pueden depender de utilitarios y plataforma, pero nunca al revés); los adaptadores dentro de integración; un control por caso de uso y no por herramienta; las carpetas organizadas por paquete y no por tipo técnico.
+
+- **Qué descartamos y por qué:** Un único paquete de dominio, porque generaba un ciclo entre Seguimiento y Alertas; por eso se separó el Núcleo de proyectos. Una flecha desde el temporizador hacia integración, porque su configuración no genera una dependencia de código; se dejó como nota. Carpetas por tipo técnico (controllers, models), que la rúbrica no acepta. Servidores y despliegue, que pertenecen a la semana 7.
+
+- **Verificación:** Recorrimos a mano las once dependencias buscando ciclos. Revisamos que ninguna flecha salga de un utilitario o de la plataforma hacia un dominio. Cruzamos cada control y adaptador de las robustez con su paquete. Revisamos el checklist de la rúbrica. 
+
+- **¿Error de la IA?:** Dos. (1) Indicó renumerar la «sección 5» del DAS usando la numeración del bloque de casos de uso, pero el DAS principal tiene otra numeración; se corrigió al renumerar la parte principal. (2) La primera propuesta de dependencias creaba un ciclo entre dos paquetes de dominio; se corrigió separando los paquetes.
+
+- **Riesgo detectado:** La tabla de plataformas (Django, PostgreSQL, Celery) contradice lo que el DAS dice en las secciones 7.2 y 9.1 sobre tecnología aún no elegida. Se dejó como propuesta provisional, sujeta a la decisión del equipo.
+
+- **Decisión del grupo:** Se revisó el trabajo ya terminado y se aprobó para la respectiva presentación.
