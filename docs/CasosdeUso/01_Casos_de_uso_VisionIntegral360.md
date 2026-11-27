@@ -18,11 +18,11 @@ Casos de uso (vista de escenarios)
 
 **GRUPO B · INTEGRANTES**
 
-| Diana Bermeo  | IA              |
+| Diana Bermeo  | ARQUITECTO LIDER             |
 |---------------|-----------------|
-| Camilo Fierro | revisor         |
-| Steven Vega   | arquitecto      |
-| Lady Robalino | El que falta XD |
+| Camilo Fierro | MODELADOR         |
+| Steven Vega   | REVISOR       |
+| Lady Robalino |DOCUMENTADOR|
 
 | **Docente**           | **Entrega**             | **Período académico** |
 |-----------------------|-------------------------|-----------------------|
@@ -82,7 +82,10 @@ Al revisar el catálogo original con las demás vistas se tomaron cuatro decisio
 
 Archivo fuente en el repositorio: diagramas/vision360-casos-de-uso.puml (el gráfico de este documento se generó con Graphviz a partir de casos.dot; ambos describen el mismo modelo).
 
-![Figura 2. Diagrama de casos de uso de Visión Integral 360.](imagenes/01_figura_image2.png)
+
+<img width="812" height="886" alt="image" src="https://github.com/user-attachments/assets/062b1198-b0cc-4117-aff3-4f83a7641240" />
+
+
 
 *Figura 2. Diagrama de casos de uso de Visión Integral 360.*
 
