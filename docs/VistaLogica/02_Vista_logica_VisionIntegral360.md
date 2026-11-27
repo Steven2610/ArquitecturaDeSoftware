@@ -18,11 +18,11 @@ Vista lógica del dominio
 
 **GRUPO B · INTEGRANTES**
 
-| Diana Bermeo  | IA              |
+| Diana Bermeo  | Documentador          |
 |---------------|-----------------|
-| Camilo Fierro | revisor         |
-| Steven Vega   | arquitecto      |
-| Lady Robalino | El que falta XD |
+| Camilo Fierro | modelador         |
+| Steven Vega   |Revisor     |
+| Lady Robalino | arquitecto lider|
 
 | **Docente**           | **Entrega**             | **Período académico** |
 |-----------------------|-------------------------|-----------------------|
