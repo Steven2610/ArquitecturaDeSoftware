@@ -106,15 +106,19 @@ P1: ¿Es un concepto relevante para el negocio? P2: ¿Tiene identidad o seguimie
 
 El diagrama emplea conceptos de negocio, tipos de datos de dominio, asociaciones y dos composiciones justificadas. Las multiplicidades están indicadas en ambos extremos. Contiene 17 clases: las 13 de la versión anterior más RegistroEvaluacion, Notificacion, IncidenciaSincronizacion y PerfilUsuario. Archivo editable: vision360-vista-logica.mmd (el gráfico se generó con Graphviz desde clases.dot).
 
-![Figura 3. Modelo conceptual completo de 17 clases (vista general; se amplía en las figuras 4 y 5).](imagenes/02_figura_3.png)
+<img width="3817" height="1838" alt="02_figura_3" src="https://github.com/user-attachments/assets/5748072f-5c9d-46df-93a5-a123af2cd2c7" />
+
 
 *Figura 3. Modelo conceptual completo de 17 clases (vista general; se amplía en las figuras 4 y 5).*
 
-![Figura 4. Detalle: proyecto, seguimiento, indicadores y correspondencia de origen. La restricción {xor} se explica en 3.3.1.](imagenes/02_figura_4.png)
+<img width="2537" height="1234" alt="02_figura_4" src="https://github.com/user-attachments/assets/4a69ca49-0ada-407e-9bd5-275031c69d6f" />
+
+
 
 *Figura 4. Detalle: proyecto, seguimiento, indicadores y correspondencia de origen. La restricción {xor} se explica en 3.3.1.*
 
-![Figura 5. Detalle: sincronización, alertas, evaluación y notificación.](imagenes/02_figura_5.png)
+<img width="1476" height="1548" alt="02_figura_5" src="https://github.com/user-attachments/assets/bc164650-3d60-466e-85a6-fab387c9ba3d" />
+
 
 *Figura 5. Detalle: sincronización, alertas, evaluación y notificación.*
 
